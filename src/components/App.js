@@ -1,25 +1,31 @@
-import React, { Component } from "react";
-import "../styles/App.css";
+import React, { Component, useState } from "react";
 
 class App extends Component {
-
-  state = {
-    para : ""
+  constructor(props) {
+    super(props);
+    this.state = {
+      clicked: false
+    };
+    this._onButtonClick = this._onButtonClick.bind(this);
   }
-
- addPara = () => {
+  _onButtonClick() {
     this.setState({
-    para: "Hello, I've learnt to use the full-stack evaluation tool. This makes me so happy",
-    })
- }
-
-
+      clicked: true
+    });
+  }
   render() {
     return (
       <div id="main">
         {/* Do not remove this main div!! */}
-        <button onClick={this.addPara}>Show Para</button>
-        <p>{this.state.para}</p>
+        <button id="click" onClick={this._onButtonClick}>
+          click
+        </button>
+        {this.state.clicked ? (
+          <p id="para">
+            Hello, I've learnt to use the full-stack evaluation tool. This makes
+            me so happy
+          </p>
+        ) : null}
       </div>
     );
   }
